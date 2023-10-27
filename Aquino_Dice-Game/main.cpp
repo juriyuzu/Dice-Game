@@ -82,6 +82,7 @@ void diceGame() {
 			while (true) {
 				displayBoard(user, cash);
 				cout << "\nPlease enter your bet [4, 5, 6, 8, 9, 10]: ";
+				input = "";
 				getline(cin, input);
 				try {
 					switch (stoi(input)) {
@@ -139,6 +140,7 @@ void diceGame() {
 				}
 				displayBoard(user, cash);
 				cout << "\nDo you want to place another bet [y/n] ? ";
+				input = "";
 				getline(cin, input);
 				if (input == "y") break;
 				if (input == "n") {
@@ -149,13 +151,14 @@ void diceGame() {
 			if (flag) break;
 		}
 		if (flag3) break;
-		flag = false;
 		bool flag2 = false;
 		while (true) {
+			flag = false;
 			int result;
 			int dice1 = rng(1, 6);
 			int dice2 = rng(1, 6);
 			while (true) {
+				flag = false;
 				displayBoard(user, cash);
 				displayDice(dice1, dice2);
 				int win = 0;
@@ -214,12 +217,14 @@ void diceGame() {
 							cout << "You win!!! Dice number is " << dice1 + dice2 << "\n"
 								 << "Win: " << win << "\tTotal cash: " << win + cash << "\n\n"
 								 << "Roll again [y/n] ? ";
+							input = "";
 							getline(cin, input);
 							if (input == "y") {
 								cash += win;
 								flag = true;
 							}
 							else if (input == "n") {
+								cash += win;
 								flag = true;
 								flag2 = true;
 							}
@@ -230,6 +235,7 @@ void diceGame() {
 						while (true) {
 							cout << "No win... Dice number is " << dice1 + dice2 << "\n\n"
 								 << "Roll again [y/n] ? ";
+							input = "";
 							getline(cin, input);
 							if (input == "y") {
 								flag = true;
@@ -250,6 +256,7 @@ void diceGame() {
 								break;
 							}
 							cout << "Do you want to play another [y/n] ? ";
+							input = "";
 							getline(cin, input);
 							if (input == "y") {
 								flag = true;
